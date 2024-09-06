@@ -1,3 +1,9 @@
+metrics-library (1.0.166-973-0ubuntu1~24.10~ppa2) oracular; urgency=medium
+
+  * Bumped the source down to match the version number
+
+ -- Shane McKee <shane.mckee@canonical.com> Fri, 06 Sep 2024 21:17:30 +0800
+
 metrics-library (1.0.166-973-0ubuntu1~24.10~ppa1) oracular; urgency=medium
 
   * Update version number
