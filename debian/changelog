@@ -1,8 +1,14 @@
+metrics-library (1.0.166-973-0ubuntu1~24.04~ppa3) oracular; urgency=medium
+
+  * Add cleanup for build dir
+
+ -- Shane McKee <shane.mckee@canonical.com>  Wed, 18 Sep 2024 21:12:11 +0800
+
 metrics-library (1.0.166-973-0ubuntu1~24.10~ppa2) oracular; urgency=medium
 
   * Bumped the source down to match the version number
 
- -- Shane McKee <shane.mckee@canonical.com> Fri, 06 Sep 2024 21:17:30 +0800
+ -- Shane McKee <shane.mckee@canonical.com>  Fri, 06 Sep 2024 21:17:30 +0800
 
 metrics-library (1.0.166-973-0ubuntu1~24.10~ppa1) oracular; urgency=medium
 
