@@ -10,8 +10,8 @@ Build-Depends: debhelper (>= 11),
 Standards-Version: 4.3.0
 Homepage: https://github.com/intel/metrics-library
 
-Package: intel-metrics-library
-Replaces: libigdml1
+Package: libigdml1
+Provides: intel-metrics-library
 Architecture: amd64
 Depends:
  ${misc:Depends},
@@ -20,8 +20,8 @@ Description: Intel(R) Metrics Library for MDAPI (Intel(R) Metrics Discovery
  API) -- shared library. Metrics Library is a user mode driver helper library
  that provides access to GPU performance counters.
 
-Package: intel-metrics-library-dev
-Replaces: libigdml-dev
+Package: libigdml-dev
+Provides: intel-metrics-library-dev
 Section: libdevel
 Architecture: amd64
 Depends:

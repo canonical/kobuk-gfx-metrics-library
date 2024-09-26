@@ -1,6 +1,8 @@
-metrics-library (1.0.166-973-0ubuntu1~24.04~ppa3) oracular; urgency=medium
+metrics-library (1.0.166-973-0ubuntu1~24.10~ppa3) oracular; urgency=medium
 
   * Add cleanup for build dir
+  * Fix watch file
+  * Change binary package names to match sonames
 
  -- Shane McKee <shane.mckee@canonical.com>  Wed, 18 Sep 2024 21:12:11 +0800
 
