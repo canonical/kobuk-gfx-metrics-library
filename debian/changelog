@@ -1,3 +1,9 @@
+metrics-library (1.0.173-1-0ubuntu1~24.10~ppa1) oracular; urgency=medium
+
+  * Update source to 1.0.173
+
+ -- piandro-mobl2 <pavel.androniychuk@intel.com>  Tue, 01 Oct 2024 11:19:36 -0700
+
 metrics-library (1.0.166-973-0ubuntu1~24.04~ppa3) oracular; urgency=medium
 
   * Add cleanup for build dir
