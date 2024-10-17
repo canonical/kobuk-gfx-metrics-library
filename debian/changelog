@@ -1,3 +1,9 @@
+metrics-library (1.0.173-1-0ubuntu1~24.04~ppa1) noble; urgency=medium
+
+  * Change to Noble
+
+ -- Shane McKee <shane.mckee@canonical.com>  Fri, 18 Oct 2024 00:48:48 +0800
+
 metrics-library (1.0.173-1-0ubuntu1~24.10~ppa1) oracular; urgency=medium
 
   * Update source to 1.0.173
