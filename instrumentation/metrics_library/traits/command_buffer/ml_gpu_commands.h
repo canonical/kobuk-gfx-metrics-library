@@ -1,6 +1,6 @@
 /*========================== begin_copyright_notice ============================
 
-Copyright (C) 2020-2024 Intel Corporation
+Copyright (C) 2020-2025 Intel Corporation
 
 SPDX-License-Identifier: MIT
 
@@ -36,15 +36,6 @@ namespace ML::BASE
             EnablePostSync    = ML_BIT( 2 ),
             WorkloadPartition = ML_BIT( 3 )
         };
-
-        //////////////////////////////////////////////////////////////////////////
-        /// @brief  Returns description about itself.
-        /// @return trait name used in library's code.
-        //////////////////////////////////////////////////////////////////////////
-        ML_INLINE static const std::string GetDescription()
-        {
-            return "GpuCommandsTrait<Traits>";
-        }
 
         //////////////////////////////////////////////////////////////////////////
         /// @brief  Writes PIPE_CONTROL to gpu command buffer to complete
@@ -988,10 +979,31 @@ namespace ML::XE_LP
 
             return log.m_Result;
         }
+
+        //////////////////////////////////////////////////////////////////////////
+        /// @brief  Writes STORE_REGISTER_MEM commands to gpu command buffer to
+        ///         store hw counters.
+        /// @param  begin       begin/end query indicator.
+        /// @param  buffer      target command buffer.
+        /// @param  address     memory offset.
+        /// @param  reportId    report id.
+        /// @param  flags       gpu command flags.
+        /// @return             operation status.
+        //////////////////////////////////////////////////////////////////////////
+        template <bool begin, typename CommandBuffer>
+        ML_INLINE static StatusCode StoreHwCountersViaSrmOar(
+            [[maybe_unused]] CommandBuffer& buffer,
+            [[maybe_unused]] const uint64_t address,
+            [[maybe_unused]] const uint32_t reportId,
+            [[maybe_unused]] const Flags    flags )
+        {
+            ML_ASSERT_ALWAYS_ADAPTER( buffer.m_Context.m_AdapterId );
+            return StatusCode::NotSupported;
+        }
     };
 } // namespace ML::XE_LP
 
-namespace ML::XE_HP
+namespace ML::XE_HPG
 {
     template <typename T>
     struct GpuCommandsTrait : XE_LP::GpuCommandsTrait<T>
@@ -1464,15 +1476,6 @@ namespace ML::XE_HP
             }
         }
     };
-} // namespace ML::XE_HP
-
-namespace ML::XE_HPG
-{
-    template <typename T>
-    struct GpuCommandsTrait : XE_HP::GpuCommandsTrait<T>
-    {
-        ML_DECLARE_TRAIT( GpuCommandsTrait, XE_HP );
-    };
 } // namespace ML::XE_HPG
 
 namespace ML::XE_HPC
@@ -1524,27 +1527,6 @@ namespace ML::XE_HPC
             command.SetCommandStreamerStallEnable( true );
 
             return buffer.template Write<false>( command );
-        }
-
-        //////////////////////////////////////////////////////////////////////////
-        /// @brief  Writes STORE_REGISTER_MEM commands to gpu command buffer to
-        ///         store hw counters.
-        /// @param  begin       begin/end query indicator.
-        /// @param  buffer      target command buffer.
-        /// @param  address     memory offset.
-        /// @param  reportId    report id.
-        /// @param  flags       gpu command flags.
-        /// @return             operation status.
-        //////////////////////////////////////////////////////////////////////////
-        template <bool begin, typename CommandBuffer>
-        ML_INLINE static StatusCode StoreHwCountersViaSrmOar(
-            [[maybe_unused]] CommandBuffer& buffer,
-            [[maybe_unused]] const uint64_t address,
-            [[maybe_unused]] const uint32_t reportId,
-            [[maybe_unused]] const Flags    flags )
-        {
-            ML_ASSERT_ALWAYS_ADAPTER( buffer.m_Context.m_AdapterId );
-            return StatusCode::NotSupported;
         }
 
         //////////////////////////////////////////////////////////////////////////
@@ -1802,26 +1784,14 @@ namespace ML::XE2_HPG
 
             return log.m_Result;
         }
-
-        //////////////////////////////////////////////////////////////////////////
-        /// @brief  Writes STORE_REGISTER_MEM commands to gpu command buffer to
-        ///         store hw counters.
-        /// @param  begin       begin/end query indicator.
-        /// @param  buffer      target command buffer.
-        /// @param  address     memory offset.
-        /// @param  reportId    report id.
-        /// @param  flags       gpu command flags.
-        /// @return             operation status.
-        //////////////////////////////////////////////////////////////////////////
-        template <bool begin, typename CommandBuffer>
-        ML_INLINE static StatusCode StoreHwCountersViaSrmOar(
-            [[maybe_unused]] CommandBuffer& buffer,
-            [[maybe_unused]] const uint64_t address,
-            [[maybe_unused]] const uint32_t reportId,
-            [[maybe_unused]] const Flags    flags )
-        {
-            ML_ASSERT_ALWAYS_ADAPTER( buffer.m_Context.m_AdapterId );
-            return StatusCode::NotSupported;
-        }
     };
 } // namespace ML::XE2_HPG
+
+namespace ML::XE3
+{
+    template <typename T>
+    struct GpuCommandsTrait : XE2_HPG::GpuCommandsTrait<T>
+    {
+        ML_DECLARE_TRAIT( GpuCommandsTrait, XE2_HPG );
+    };
+} // namespace ML::XE3

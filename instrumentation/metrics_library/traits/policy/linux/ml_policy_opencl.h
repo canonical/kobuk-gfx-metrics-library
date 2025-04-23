@@ -1,6 +1,6 @@
 /*========================== begin_copyright_notice ============================
 
-Copyright (C) 2020-2024 Intel Corporation
+Copyright (C) 2020-2025 Intel Corporation
 
 SPDX-License-Identifier: MIT
 
@@ -24,15 +24,6 @@ namespace ML::BASE
     {
         ML_DELETE_DEFAULT_CONSTRUCTOR( PolicyOpenCLTrait );
         ML_DELETE_DEFAULT_COPY_AND_MOVE( PolicyOpenCLTrait );
-
-        //////////////////////////////////////////////////////////////////////////
-        /// @brief  Returns description about itself.
-        /// @return trait name used in library's code.
-        //////////////////////////////////////////////////////////////////////////
-        ML_INLINE static const std::string GetDescription()
-        {
-            return "PolicyOpenCLTrait<Traits>";
-        }
 
         //////////////////////////////////////////////////////////////////////////
         /// @brief Query hw counters policies.
@@ -61,7 +52,7 @@ namespace ML::BASE
             //////////////////////////////////////////////////////////////////////////
             struct Begin
             {
-                static constexpr bool m_FlushCommandBuffer = true;
+                static constexpr bool m_FlushCommandBuffer = false;
                 static constexpr bool m_ClearGpuMemory     = true;
             };
 
@@ -142,7 +133,7 @@ namespace ML::XE_LP
     };
 } // namespace ML::XE_LP
 
-namespace ML::XE_HP
+namespace ML::XE_HPG
 {
     template <typename T>
     struct PolicyOpenCLTrait : XE_LP::PolicyOpenCLTrait<T>
@@ -157,15 +148,6 @@ namespace ML::XE_HP
             static constexpr bool m_DriverClientDataRequired = false;
             static constexpr bool m_AllowImplicitScaling     = false;
         };
-    };
-} // namespace ML::XE_HP
-
-namespace ML::XE_HPG
-{
-    template <typename T>
-    struct PolicyOpenCLTrait : XE_HP::PolicyOpenCLTrait<T>
-    {
-        ML_DECLARE_TRAIT( PolicyOpenCLTrait, XE_HP );
     };
 } // namespace ML::XE_HPG
 
@@ -186,3 +168,12 @@ namespace ML::XE2_HPG
         ML_DECLARE_TRAIT( PolicyOpenCLTrait, XE_HPG );
     };
 } // namespace ML::XE2_HPG
+
+namespace ML::XE3
+{
+    template <typename T>
+    struct PolicyOpenCLTrait : XE2_HPG::PolicyOpenCLTrait<T>
+    {
+        ML_DECLARE_TRAIT( PolicyOpenCLTrait, XE2_HPG );
+    };
+} // namespace ML::XE3

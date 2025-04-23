@@ -1,6 +1,6 @@
 /*========================== begin_copyright_notice ============================
 
-Copyright (C) 2022-2024 Intel Corporation
+Copyright (C) 2022-2025 Intel Corporation
 
 SPDX-License-Identifier: MIT
 
@@ -29,15 +29,6 @@ namespace ML::BASE
         //////////////////////////////////////////////////////////////////////////
         InternalFeatureTrait()
         {
-        }
-
-        //////////////////////////////////////////////////////////////////////////
-        /// @brief  Returns description about itself.
-        /// @return trait name used in library's code.
-        //////////////////////////////////////////////////////////////////////////
-        ML_INLINE static const std::string GetDescription()
-        {
-            return "InternalFeatureTrait<Traits>";
         }
     };
 } // namespace ML::BASE
@@ -69,21 +60,12 @@ namespace ML::XE_LP
     };
 } // namespace ML::XE_LP
 
-namespace ML::XE_HP
+namespace ML::XE_HPG
 {
     template <typename T>
     struct InternalFeatureTrait : XE_LP::InternalFeatureTrait<T>
     {
         ML_DECLARE_TRAIT( InternalFeatureTrait, XE_LP );
-    };
-} // namespace ML::XE_HP
-
-namespace ML::XE_HPG
-{
-    template <typename T>
-    struct InternalFeatureTrait : XE_HP::InternalFeatureTrait<T>
-    {
-        ML_DECLARE_TRAIT( InternalFeatureTrait, XE_HP );
     };
 } // namespace ML::XE_HPG
 
@@ -133,3 +115,12 @@ namespace ML::XE2_HPG
         }
     };
 } // namespace ML::XE2_HPG
+
+namespace ML::XE3
+{
+    template <typename T>
+    struct InternalFeatureTrait : XE2_HPG::InternalFeatureTrait<T>
+    {
+        ML_DECLARE_TRAIT( InternalFeatureTrait, XE2_HPG );
+    };
+} // namespace ML::XE3
