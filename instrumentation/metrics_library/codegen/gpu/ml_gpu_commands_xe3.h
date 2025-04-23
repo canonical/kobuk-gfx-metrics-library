@@ -1,13 +1,13 @@
 /*========================== begin_copyright_notice ============================
 
-Copyright (C) 2020-2024 Intel Corporation
+Copyright (C) 2025 Intel Corporation
 
 SPDX-License-Identifier: MIT
 
 ============================= end_copyright_notice ===========================*/
 
 /*
-@file ml_gpu_commands_xe_hp.h
+@file ml_gpu_commands_xe3.h
 
 @brief auto-generated file
 
@@ -519,11 +519,11 @@ struct PIPE_CONTROL
             __CODEGEN_UINT32         PredicateEnable                                  : __CODEGEN_BITFIELD( 8,  8)    ; 
             __CODEGEN_UINT32         DataportFlush                                    : __CODEGEN_BITFIELD( 9,  9)    ; 
             __CODEGEN_UINT32         L3ReadOnlyCacheInvalidationEnable                : __CODEGEN_BITFIELD(10, 10)    ; 
-            __CODEGEN_UINT32         UnTypedDataPortCacheFlush                        : __CODEGEN_BITFIELD(11, 11)    ; 
+            __CODEGEN_UINT32         UntypedDataPortCacheFlush                        : __CODEGEN_BITFIELD(11, 11)    ; 
             __CODEGEN_UINT32         Reserved_12                                      : __CODEGEN_BITFIELD(12, 12)    ; 
             __CODEGEN_UINT32         CompressionControlSurface_CCSFlush               : __CODEGEN_BITFIELD(13, 13)    ; 
             __CODEGEN_UINT32         WorkloadPartitionIDOffsetEnable                  : __CODEGEN_BITFIELD(14, 14)    ; 
-            __CODEGEN_UINT32         SFSyncStall                                      : __CODEGEN_BITFIELD(15, 15)    ; 
+            __CODEGEN_UINT32         Reserved_15                                      : __CODEGEN_BITFIELD(15, 15)    ; 
             __CODEGEN_UINT32         _3DCommandSubOpcode                              : __CODEGEN_BITFIELD(16, 23)    ; 
             __CODEGEN_UINT32         _3DCommandOpcode                                 : __CODEGEN_BITFIELD(24, 26)    ; 
             __CODEGEN_UINT32         CommandSubType                                   : __CODEGEN_BITFIELD(27, 28)    ; 
@@ -534,7 +534,7 @@ struct PIPE_CONTROL
             __CODEGEN_UINT32         StateCacheInvalidationEnable                     : __CODEGEN_BITFIELD( 2,  2)    ; 
             __CODEGEN_UINT32         ConstantCacheInvalidationEnable                  : __CODEGEN_BITFIELD( 3,  3)    ; 
             __CODEGEN_UINT32         VFCacheInvalidationEnable                        : __CODEGEN_BITFIELD( 4,  4)    ; 
-            __CODEGEN_UINT32         DCFlushEnable                                    : __CODEGEN_BITFIELD( 5,  5)    ; 
+            __CODEGEN_UINT32         ForceDeviceCoherency                             : __CODEGEN_BITFIELD( 5,  5)    ; 
             __CODEGEN_UINT32         ProtectedMemoryApplicationID                     : __CODEGEN_BITFIELD( 6,  6)    ; 
             __CODEGEN_UINT32         PipeControlFlushEnable                           : __CODEGEN_BITFIELD( 7,  7)    ; 
             __CODEGEN_UINT32         NotifyEnable                                     : __CODEGEN_BITFIELD( 8,  8)    ; 
@@ -544,7 +544,7 @@ struct PIPE_CONTROL
             __CODEGEN_UINT32         RenderTargetCacheFlushEnable                     : __CODEGEN_BITFIELD(12, 12)    ; 
             __CODEGEN_UINT32         DepthStallEnable                                 : __CODEGEN_BITFIELD(13, 13)    ; 
             __CODEGEN_UINT32         PostSyncOperation                                : __CODEGEN_BITFIELD(14, 15)    ; 
-            __CODEGEN_UINT32         GenericMediaStateClear                           : __CODEGEN_BITFIELD(16, 16)    ; 
+            __CODEGEN_UINT32         Reserved_48                                      : __CODEGEN_BITFIELD(16, 16)    ; 
             __CODEGEN_UINT32         PSSStallSyncEnable                               : __CODEGEN_BITFIELD(17, 17)    ; 
             __CODEGEN_UINT32         TLBInvalidate                                    : __CODEGEN_BITFIELD(18, 18)    ; 
             __CODEGEN_UINT32         DepthStallSyncEnable                             : __CODEGEN_BITFIELD(19, 19)    ; 
@@ -554,11 +554,11 @@ struct PIPE_CONTROL
             __CODEGEN_UINT32         LRIPostSyncOperation                             : __CODEGEN_BITFIELD(23, 23)    ; 
             __CODEGEN_UINT32         DestinationAddressType                           : __CODEGEN_BITFIELD(24, 24)    ; 
             __CODEGEN_UINT32         AMFSFlushEnable                                  : __CODEGEN_BITFIELD(25, 25)    ; 
-            __CODEGEN_UINT32         FlushLLC                                         : __CODEGEN_BITFIELD(26, 26)    ; 
+            __CODEGEN_UINT32         Reserved_58                                      : __CODEGEN_BITFIELD(26, 26)    ; 
             __CODEGEN_UINT32         ProtectedMemoryDisable                           : __CODEGEN_BITFIELD(27, 27)    ; 
-            __CODEGEN_UINT32         TileCacheFlushEnable                             : __CODEGEN_BITFIELD(28, 28)    ; 
+            __CODEGEN_UINT32         Reserved_60                                      : __CODEGEN_BITFIELD(28, 28)    ; 
             __CODEGEN_UINT32         CommandCacheInvalidateEnable                     : __CODEGEN_BITFIELD(29, 29)    ; 
-            __CODEGEN_UINT32         L3FabricFlush                                    : __CODEGEN_BITFIELD(30, 30)    ; 
+            __CODEGEN_UINT32         Reserved_62                                      : __CODEGEN_BITFIELD(30, 30)    ; 
             __CODEGEN_UINT32         TBIMRForceBatchClosure                           : __CODEGEN_BITFIELD(31, 31)    ; 
 
             __CODEGEN_UINT32         Reserved_64                                      : __CODEGEN_BITFIELD( 0,  1)    ; 
@@ -580,10 +580,9 @@ struct PIPE_CONTROL
         __CODEGEN_DebugAttributeUInt(   TheStructure.Common.PredicateEnable                             ,  8,  8 );
         __CODEGEN_DebugAttributeUInt(   TheStructure.Common.DataportFlush                               ,  9,  9 );
         __CODEGEN_DebugAttributeUInt(   TheStructure.Common.L3ReadOnlyCacheInvalidationEnable           , 10, 10 );
-        __CODEGEN_DebugAttributeUInt(   TheStructure.Common.UnTypedDataPortCacheFlush                   , 11, 11 );
+        __CODEGEN_DebugAttributeUInt(   TheStructure.Common.UntypedDataPortCacheFlush                   , 11, 11 );
         __CODEGEN_DebugAttributeUInt(   TheStructure.Common.CompressionControlSurface_CCSFlush          , 13, 13 );
         __CODEGEN_DebugAttributeUInt(   TheStructure.Common.WorkloadPartitionIDOffsetEnable             , 14, 14 );
-        __CODEGEN_DebugAttributeUInt(   TheStructure.Common.SFSyncStall                                 , 15, 15 );
         __CODEGEN_DebugAttributeEnum(   TheStructure.Common._3DCommandSubOpcode                         , 16, 23, _3D_COMMAND_SUB_OPCODE );
         __CODEGEN_DebugAttributeEnum(   TheStructure.Common._3DCommandOpcode                            , 24, 26, _3D_COMMAND_OPCODE );
         __CODEGEN_DebugAttributeEnum(   TheStructure.Common.CommandSubType                              , 27, 28, COMMAND_SUBTYPE );
@@ -593,7 +592,7 @@ struct PIPE_CONTROL
         __CODEGEN_DebugAttributeBool(   TheStructure.Common.StateCacheInvalidationEnable                ,  2,  2 );
         __CODEGEN_DebugAttributeBool(   TheStructure.Common.ConstantCacheInvalidationEnable             ,  3,  3 );
         __CODEGEN_DebugAttributeBool(   TheStructure.Common.VFCacheInvalidationEnable                   ,  4,  4 );
-        __CODEGEN_DebugAttributeBool(   TheStructure.Common.DCFlushEnable                               ,  5,  5 );
+        __CODEGEN_DebugAttributeBool(   TheStructure.Common.ForceDeviceCoherency                        ,  5,  5 );
         __CODEGEN_DebugAttributeUInt(   TheStructure.Common.ProtectedMemoryApplicationID                ,  6,  6 );
         __CODEGEN_DebugAttributeBool(   TheStructure.Common.PipeControlFlushEnable                      ,  7,  7 );
         __CODEGEN_DebugAttributeBool(   TheStructure.Common.NotifyEnable                                ,  8,  8 );
@@ -603,7 +602,6 @@ struct PIPE_CONTROL
         __CODEGEN_DebugAttributeBool(   TheStructure.Common.RenderTargetCacheFlushEnable                , 12, 12 );
         __CODEGEN_DebugAttributeBool(   TheStructure.Common.DepthStallEnable                            , 13, 13 );
         __CODEGEN_DebugAttributeEnum(   TheStructure.Common.PostSyncOperation                           , 14, 15, POST_SYNC_OPERATION );
-        __CODEGEN_DebugAttributeBool(   TheStructure.Common.GenericMediaStateClear                      , 16, 16 );
         __CODEGEN_DebugAttributeBool(   TheStructure.Common.PSSStallSyncEnable                          , 17, 17 );
         __CODEGEN_DebugAttributeUInt(   TheStructure.Common.TLBInvalidate                               , 18, 18 );
         __CODEGEN_DebugAttributeBool(   TheStructure.Common.DepthStallSyncEnable                        , 19, 19 );
@@ -613,11 +611,8 @@ struct PIPE_CONTROL
         __CODEGEN_DebugAttributeEnum(   TheStructure.Common.LRIPostSyncOperation                        , 23, 23, LRI_POST_SYNC_OPERATION );
         __CODEGEN_DebugAttributeEnum(   TheStructure.Common.DestinationAddressType                      , 24, 24, DESTINATION_ADDRESS_TYPE );
         __CODEGEN_DebugAttributeBool(   TheStructure.Common.AMFSFlushEnable                             , 25, 25 );
-        __CODEGEN_DebugAttributeBool(   TheStructure.Common.FlushLLC                                    , 26, 26 );
         __CODEGEN_DebugAttributeUInt(   TheStructure.Common.ProtectedMemoryDisable                      , 27, 27 );
-        __CODEGEN_DebugAttributeUInt(   TheStructure.Common.TileCacheFlushEnable                        , 28, 28 );
         __CODEGEN_DebugAttributeBool(   TheStructure.Common.CommandCacheInvalidateEnable                , 29, 29 );
-        __CODEGEN_DebugAttributeUInt(   TheStructure.Common.L3FabricFlush                               , 30, 30 );
         __CODEGEN_DebugAttributeEnum(   TheStructure.Common.TBIMRForceBatchClosure                      , 31, 31, TBIMR_FORCE_BATCH_CLOSURE );
         __CODEGEN_DebugAttributeUInt(   TheStructure.Common.Address                                     ,  2, 31 );
         __CODEGEN_DebugAttributeUInt(   TheStructure.Common.AddressHigh                                 ,  0, 31 );
@@ -795,16 +790,16 @@ struct PIPE_CONTROL
     }
 
 
-    __CODEGEN_INLINE void SetUnTypedDataPortCacheFlush( const __CODEGEN_UINT32 value )
+    __CODEGEN_INLINE void SetUntypedDataPortCacheFlush( const __CODEGEN_UINT32 value )
     {
         __CODEGEN_SET_MACRO( value );
-        TheStructure.Common.UnTypedDataPortCacheFlush = value;
+        TheStructure.Common.UntypedDataPortCacheFlush = value;
     }
 
-    __CODEGEN_INLINE __CODEGEN_UINT32 GetUnTypedDataPortCacheFlush( void ) const 
+    __CODEGEN_INLINE __CODEGEN_UINT32 GetUntypedDataPortCacheFlush( void ) const 
     {
         __CODEGEN_GET_MACRO();
-        return ( TheStructure.Common.UnTypedDataPortCacheFlush );
+        return ( TheStructure.Common.UntypedDataPortCacheFlush );
     }
 
 
@@ -831,19 +826,6 @@ struct PIPE_CONTROL
     {
         __CODEGEN_GET_MACRO();
         return ( TheStructure.Common.WorkloadPartitionIDOffsetEnable );
-    }
-
-
-    __CODEGEN_INLINE void SetSFSyncStall( const __CODEGEN_UINT32 value )
-    {
-        __CODEGEN_SET_MACRO( value );
-        TheStructure.Common.SFSyncStall = value;
-    }
-
-    __CODEGEN_INLINE __CODEGEN_UINT32 GetSFSyncStall( void ) const 
-    {
-        __CODEGEN_GET_MACRO();
-        return ( TheStructure.Common.SFSyncStall );
     }
 
 
@@ -912,16 +894,16 @@ struct PIPE_CONTROL
     }
 
 
-    __CODEGEN_INLINE void SetDCFlushEnable( const __CODEGEN_BOOL value )
+    __CODEGEN_INLINE void SetForceDeviceCoherency( const __CODEGEN_BOOL value )
     {
         __CODEGEN_SET_MACRO( value );
-        TheStructure.Common.DCFlushEnable = value;
+        TheStructure.Common.ForceDeviceCoherency = value;
     }
 
-    __CODEGEN_INLINE __CODEGEN_BOOL GetDCFlushEnable( void ) const 
+    __CODEGEN_INLINE __CODEGEN_BOOL GetForceDeviceCoherency( void ) const 
     {
         __CODEGEN_GET_MACRO();
-        return ( TheStructure.Common.DCFlushEnable );
+        return ( TheStructure.Common.ForceDeviceCoherency );
     }
 
 
@@ -1042,19 +1024,6 @@ struct PIPE_CONTROL
     }
 
 
-    __CODEGEN_INLINE void SetGenericMediaStateClear( const __CODEGEN_BOOL value )
-    {
-        __CODEGEN_SET_MACRO( value );
-        TheStructure.Common.GenericMediaStateClear = value;
-    }
-
-    __CODEGEN_INLINE __CODEGEN_BOOL GetGenericMediaStateClear( void ) const 
-    {
-        __CODEGEN_GET_MACRO();
-        return ( TheStructure.Common.GenericMediaStateClear );
-    }
-
-
     __CODEGEN_INLINE void SetPSSStallSyncEnable( const __CODEGEN_BOOL value )
     {
         __CODEGEN_SET_MACRO( value );
@@ -1172,19 +1141,6 @@ struct PIPE_CONTROL
     }
 
 
-    __CODEGEN_INLINE void SetFlushLLC( const __CODEGEN_BOOL value )
-    {
-        __CODEGEN_SET_MACRO( value );
-        TheStructure.Common.FlushLLC = value;
-    }
-
-    __CODEGEN_INLINE __CODEGEN_BOOL GetFlushLLC( void ) const 
-    {
-        __CODEGEN_GET_MACRO();
-        return ( TheStructure.Common.FlushLLC );
-    }
-
-
     __CODEGEN_INLINE void SetProtectedMemoryDisable( const __CODEGEN_UINT32 value )
     {
         __CODEGEN_SET_MACRO( value );
@@ -1198,19 +1154,6 @@ struct PIPE_CONTROL
     }
 
 
-    __CODEGEN_INLINE void SetTileCacheFlushEnable( const __CODEGEN_UINT32 value )
-    {
-        __CODEGEN_SET_MACRO( value );
-        TheStructure.Common.TileCacheFlushEnable = value;
-    }
-
-    __CODEGEN_INLINE __CODEGEN_UINT32 GetTileCacheFlushEnable( void ) const 
-    {
-        __CODEGEN_GET_MACRO();
-        return ( TheStructure.Common.TileCacheFlushEnable );
-    }
-
-
     __CODEGEN_INLINE void SetCommandCacheInvalidateEnable( const __CODEGEN_BOOL value )
     {
         __CODEGEN_SET_MACRO( value );
@@ -1221,19 +1164,6 @@ struct PIPE_CONTROL
     {
         __CODEGEN_GET_MACRO();
         return ( TheStructure.Common.CommandCacheInvalidateEnable );
-    }
-
-
-    __CODEGEN_INLINE void SetL3FabricFlush( const __CODEGEN_UINT32 value )
-    {
-        __CODEGEN_SET_MACRO( value );
-        TheStructure.Common.L3FabricFlush = value;
-    }
-
-    __CODEGEN_INLINE __CODEGEN_UINT32 GetL3FabricFlush( void ) const 
-    {
-        __CODEGEN_GET_MACRO();
-        return ( TheStructure.Common.L3FabricFlush );
     }
 
 
@@ -1773,7 +1703,7 @@ struct MI_COPY_MEM_MEM
 
     typedef enum tagMI_COMMAND_OPCODE
     {
-        MI_COMMAND_OPCODE_MI_MEM_TO_MEM                                  = 46, 
+        MI_COMMAND_OPCODE_MI_COPY_MEM_MEM                                = 46, 
     } MI_COMMAND_OPCODE;
 
     typedef enum tagCOMMAND_TYPE
@@ -1802,7 +1732,7 @@ struct MI_COPY_MEM_MEM
 
     __CODEGEN_DebugEnum( MI_COMMAND_OPCODE )
     {
-        __CODEGEN_DebugEnumValue( MI_COMMAND_OPCODE_MI_MEM_TO_MEM );
+        __CODEGEN_DebugEnumValue( MI_COMMAND_OPCODE_MI_COPY_MEM_MEM );
     }
 
     __CODEGEN_DebugEnum( COMMAND_TYPE )

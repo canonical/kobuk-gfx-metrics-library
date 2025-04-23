@@ -1,6 +1,6 @@
 /*========================== begin_copyright_notice ============================
 
-Copyright (C) 2020-2024 Intel Corporation
+Copyright (C) 2020-2025 Intel Corporation
 
 SPDX-License-Identifier: MIT
 
@@ -29,15 +29,6 @@ namespace ML::BASE
         /// @brief Types.
         //////////////////////////////////////////////////////////////////////////
         using Base = DdiObject<T, TT::Markers::StreamUser, MarkerHandle_1_0, ObjectType::MarkerStreamUser>;
-
-        //////////////////////////////////////////////////////////////////////////
-        /// @brief  Returns description about itself.
-        /// @return trait name used in library's code.
-        //////////////////////////////////////////////////////////////////////////
-        ML_INLINE static const std::string GetDescription()
-        {
-            return "MarkerStreamUserTrait<Traits>";
-        }
 
         //////////////////////////////////////////////////////////////////////////
         /// @brief  Writes marker stream user commands to command buffer.
@@ -95,7 +86,7 @@ namespace ML::XE_LP
     };
 } // namespace ML::XE_LP
 
-namespace ML::XE_HP
+namespace ML::XE_HPG
 {
     template <typename T>
     struct MarkerStreamUserTrait : XE_LP::MarkerStreamUserTrait<T>
@@ -125,15 +116,6 @@ namespace ML::XE_HP
             return log.m_Result;
         }
     };
-} // namespace ML::XE_HP
-
-namespace ML::XE_HPG
-{
-    template <typename T>
-    struct MarkerStreamUserTrait : XE_HP::MarkerStreamUserTrait<T>
-    {
-        ML_DECLARE_TRAIT( MarkerStreamUserTrait, XE_HP );
-    };
 } // namespace ML::XE_HPG
 
 namespace ML::XE_HPC
@@ -153,3 +135,12 @@ namespace ML::XE2_HPG
         ML_DECLARE_TRAIT( MarkerStreamUserTrait, XE_HPG );
     };
 } // namespace ML::XE2_HPG
+
+namespace ML::XE3
+{
+    template <typename T>
+    struct MarkerStreamUserTrait : XE2_HPG::MarkerStreamUserTrait<T>
+    {
+        ML_DECLARE_TRAIT( MarkerStreamUserTrait, XE2_HPG );
+    };
+} // namespace ML::XE3

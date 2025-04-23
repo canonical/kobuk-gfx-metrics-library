@@ -1,6 +1,6 @@
 /*========================== begin_copyright_notice ============================
 
-Copyright (C) 2021-2024 Intel Corporation
+Copyright (C) 2021-2025 Intel Corporation
 
 SPDX-License-Identifier: MIT
 
@@ -54,15 +54,6 @@ namespace ML::BASE
         {
             return StatusCode::Success;
         }
-
-        //////////////////////////////////////////////////////////////////////////
-        /// @brief  Returns description about itself.
-        /// @return trait name used in library's code.
-        //////////////////////////////////////////////////////////////////////////
-        ML_INLINE static const std::string GetDescription()
-        {
-            return "SubDeviceTrait<Traits>";
-        }
     };
 } // namespace ML::BASE
 
@@ -93,7 +84,7 @@ namespace ML::XE_LP
     };
 } // namespace ML::XE_LP
 
-namespace ML::XE_HP
+namespace ML::XE_HPG
 {
     template <typename T>
     struct SubDeviceTrait : XE_LP::SubDeviceTrait<T>
@@ -475,15 +466,6 @@ namespace ML::XE_HP
             return log.m_Result;
         }
     };
-} // namespace ML::XE_HP
-
-namespace ML::XE_HPG
-{
-    template <typename T>
-    struct SubDeviceTrait : XE_HP::SubDeviceTrait<T>
-    {
-        ML_DECLARE_TRAIT( SubDeviceTrait, XE_HP );
-    };
 } // namespace ML::XE_HPG
 
 namespace ML::XE_HPC
@@ -539,6 +521,7 @@ namespace ML::XE2_HPG
         /// @brief  Members.
         //////////////////////////////////////////////////////////////////////////
         std::vector<EngineOaUnitClassInstance> m_Engines;
+        bool                                   m_IsConfigurableOaBufferSize;
 
         //////////////////////////////////////////////////////////////////////////
         /// @brief  Sub device constructor.
@@ -547,6 +530,7 @@ namespace ML::XE2_HPG
         SubDeviceTrait( TT::Context& context )
             : Base( context )
             , m_Engines{}
+            , m_IsConfigurableOaBufferSize( false )
         {
         }
 
@@ -673,7 +657,7 @@ namespace ML::XE2_HPG
         /// @return engines device engines.
         /// @return         operation status.
         //////////////////////////////////////////////////////////////////////////
-        ML_INLINE StatusCode GetEngines( std::vector<EngineOaUnitClassInstance>& engines ) const
+        ML_INLINE StatusCode GetEngines( std::vector<EngineOaUnitClassInstance>& engines )
         {
             ML_FUNCTION_LOG( StatusCode::Success, &m_Context );
 
@@ -699,6 +683,8 @@ namespace ML::XE2_HPG
                     {
                         engines.emplace_back( oaUnit.oa_unit_id, oaUnit.eci[j].engine_class, oaUnit.eci[j].engine_instance, oaUnit.eci[j].gt_id );
                     }
+
+                    m_IsConfigurableOaBufferSize = oaUnit.capabilities & DRM_XE_OA_CAPS_OA_BUFFER_SIZE;
                 }
 
                 oaUnitOffset += sizeof( oaUnit ) + oaUnit.num_engines * sizeof( oaUnit.eci[0] );
@@ -761,3 +747,12 @@ namespace ML::XE2_HPG
         }
     };
 } // namespace ML::XE2_HPG
+
+namespace ML::XE3
+{
+    template <typename T>
+    struct SubDeviceTrait : XE2_HPG::SubDeviceTrait<T>
+    {
+        ML_DECLARE_TRAIT( SubDeviceTrait, XE2_HPG );
+    };
+} // namespace ML::XE3
